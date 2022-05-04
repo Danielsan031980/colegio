@@ -1,0 +1,125 @@
+.App {
+  text-align: center;
+  width: 760px !important;
+  margin: 0 auto;
+  background-color: #7d65c2;
+}
+
+.formulario-enviado{
+  color: green;
+}
+.errores-form{
+  color:red;
+}
+
+.formulario-registro{
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: fit-content;
+}
+
+.formulario-login{
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: fit-content;
+  padding: 10 px;
+}
+
+.main-registro{
+  display: flex;
+  flex-direction: row;
+  width: 260px;
+  padding: 10 px;
+}
+
+.formularios-registro{
+  display: flex;
+  flex-direction: row;
+  padding: 10 px;
+  justify-content: space-around;
+}
+
+.formularios-registro div{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+}
+.ventana-formulario-data{
+  width: 860px;
+
+}
+
+.selector{
+  width: 260px;
+}
+
+.form-divitions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 660px;
+}
+img {
+  width: 160px;
+  height: 150px;
+}
+
+li div{
+  background-color: rgb(148, 174, 202);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+
+li{
+  list-style: none;
+  margin-top: 15px;
+  width: 660px ;
+}
+
+
+ul{
+  
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.main-list-pirates{
+}
+
+
+.classh1{
+  color:white !important;
+  width: 460px !important;
+  display:inline-block !important;
+  margin-left: 80px;
+  margin-top: 10px!important;
+  font-size: 30px !important;
+}
+
+.navegation-tittle{
+  display: flex;
+  justify-content:space-around;
+  background-color: rgb(175, 174, 227);
+  align-content: center;
+}
+
+.button_color{
+  background-color: #04480f !important;
+  color: white;
+  height: 35px;
+  box-shadow: 2px 2px black;
+}
+.button_color2{
+  background-color: #270660 !important;
+  color: white;
+  height: 35px;
+  box-shadow: 2px 2px black;
+}
+
+
