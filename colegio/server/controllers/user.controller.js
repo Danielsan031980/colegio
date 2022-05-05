@@ -114,6 +114,7 @@ module.exports.Register = async (req, res) => {
   // };
 
   module.exports.updateUser = (req, res) => {
+    
     User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
       .then(updateUser => res.json({ api: updateUser }))
       .catch(err => res.status(400).json(err));

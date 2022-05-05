@@ -1,22 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Registerasignature from '../components/Registerasignature';
 import axios from 'axios';
 import Navimage from './Navimage';
 import RegisterAsigForUser from '../components/RegisteraAsigForUser';
+import { useNavigate, useParams } from "react-router-dom";
 
 const Asignarasignature = (props) => {
-
+    const { id } = useParams();
     const [errors, setErrors] = useState([]);
-    const [asignatureSelection, setAsignatureSelection] = useState([]);
+    const [uservalue, setUservalue] = useState();
+    const [asignatureSelection, setAsignatureSelection] = useState({
+        asignatures:[""],
+        asignaturesIds:[""]
+    }
+    );
     const {schedule} = props
-
     const compare = async (values) => {
-
         const array = []
         const arrayIds = []
         const response = await axios.get("/api/asignature/", {withCredentials: true})
             .then(res=>{
-
                 res.data.asignature.forEach((asignature, indexA)=>{
                     let flag=true
                     //console.log("indexA:" + indexA)
@@ -48,36 +51,57 @@ const Asignarasignature = (props) => {
                             flag=false
                         }
                     })
-                    console.log(flag)
+                    
                     if(flag){
                         array.push(asignature.nameAsignature)
                         arrayIds.push(asignature._id)
-                        
-                        setAsignatureSelection(
-                            {
-                                asignatures:array,
-                                asignaturesIds:arrayIds
-                            }
-                        )
                     }
-                })           
-                
+                })                           
             })
             .catch(err=>{
                 return { success: false, data: err.message };
             })  
-        
-    }
+            setAsignatureSelection(
+                {
+                    asignatures:array,
+                    asignaturesIds:arrayIds
+                }
+            )
 
+            axios.get(`/api/user/${id}`, {withCredentials: true} )
+            .then(res=>{
+                const arrayAsig = res.data.nameAsignatures[0]
+                setUservalue(res.data)
+             })
+             .catch(err=>{
+                 return { success: false, data: err.message };
+            })     
+
+            
+    }
     const asignAsignature= (values) => {
-        // console.log(schedule)
-        // console.log(values)
+        const publishArray = {
+            nameAsignatures:[...uservalue.nameAsignatures, values.selector]
+        }
+        console.log(publishArray)
+        
+        axios.put(`/api/user/update/${id}`, publishArray, {withCredentials: true} )
+        .then(res=>{
+           
+         })
+         .catch(err=>{
+             return { success: false, data: err.message };
+        })        
+
         compare(values)
         
     }
+    useEffect(() => { 
+        compare()
+    },[uservalue]);
     return (
         <div>
-            <RegisterAsigForUser onSubmitProp={asignAsignature}  asignatureSelection={["matematicas", "filosofia","ciencias naturales"]}  />  
+            <RegisterAsigForUser onSubmitProp={asignAsignature}  asignatureSelection={asignatureSelection.asignatures} asignatureIds={asignatureSelection.asignaturesIds}  />  
         </div>
     );
 }

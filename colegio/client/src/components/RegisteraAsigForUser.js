@@ -11,16 +11,16 @@ const RegisterAsigForUser = (props) => {
     //let { id } = useParams();
     //cambia validaciones de backup al front
     const flag_errors = false;
-    const { asignatureSelection, flag_edit,  onSubmitProp } = props 
-    const selector =asignatureSelection[0]
+    const { asignatureSelection, flag_edit,  onSubmitProp, asignatureIds } = props 
+    
     useEffect(() => {  
-     
+    
     },[]);
     return (
         <div className="Register">
             <Formik          
             initialValues={{
-                selector:selector,
+                selector:"",
             }}
             validationSchema={ Yup.object().shape({
                 //    selector: Yup.string()
@@ -53,8 +53,8 @@ const RegisterAsigForUser = (props) => {
                                         <label htmlFor="selector" className="row " >Agregar Materia</label>
                                         <Field className="form-select col-3" id='selector' type="text" as='select' name='selector'>
                                             {
-                                                asignatureSelection.map((value,index)=>
-                                                <option value={value} key={index}>{value}</option>
+                                                asignatureIds?.map((value,index)=>
+                                                <option value={value} key={index}>{asignatureSelection[index]}</option>
                                                 )
                                             }
                                         </Field>
