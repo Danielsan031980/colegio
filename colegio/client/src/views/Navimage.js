@@ -38,9 +38,9 @@ const Navimage = (props) => {
             <nav className="row justify-content-around">
                 <Link className="col-2 " to="/" >Home</Link>
                 <Link className="col-2 " to="/login" onClick={() => logOut()}>Logout</Link>
-                <Link className="col-2 " to="/createUser" onClick={() => CreateNewUser()}>Nuevo Usuario</Link>
-                <Link className="col-2 " to="/createAsignature" onClick={() => CreateAsignature()}>Nueva Materia </Link>
-                <Link className="col-2 " to="/asignaturelist" > Materias </Link>
+                {flag1 && <Link className="col-2 " to="/createUser" onClick={() => CreateNewUser()}>Nuevo Usuario</Link>}
+                {flag1 && <Link className="col-2 " to="/createAsignature" onClick={() => CreateAsignature()}>Nueva Materia </Link>}
+                {flag1 && <Link className="col-2 " to="/asignaturelist" > Materias </Link>}
             </nav>
             {/* {flag1 && <button className="col-2 button_color" onClick={() => onPropsSubmit()}>Add a Pirate</button>}  
             {flag2 && <button className="col-2 button_color" onClick={() => navigate("/")}>Crew Board</button> }  */}

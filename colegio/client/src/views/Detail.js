@@ -14,11 +14,12 @@ const Detail = (props) => {
     const { setSchedule, schedule } = props
     const [uservalue, setUservalue] = useState()
     const [teacherMaterias, setTeacherMaterias] = useState()
-
+    const [flag, setFlag] = useState();
     
     const asignatures = async  (uservalue) => {
         const response = await simpleAxiosGet("http://localhost:8000/api/asignature")       
         const newAsignatures = []
+        
 
         const asignaturesDistribution = {
             newAsignatures: [],
@@ -116,40 +117,59 @@ const Detail = (props) => {
                })        
     }
     useEffect(() => {  
+        if(!user){
+            navigate("/login");
+        }
+        else if(user.rolType === "administrador"){
+            setFlag(true)
+        }
+        else if(user.rolType === "profesor"){
+
+            setFlag(false)
+     
+        }
         getData()
     }, [uservalue])
 
     return (
 
-        <div className="detail">
-            <Navimage tittle= {"akjñlkd"}  flag1={false} flag2={true} />             
-                <div className="row justify-content-evenly">
+        <div >
+            <Navimage tittle= {uservalue?.firstname + "  " + uservalue?.lastname}   flag1={flag} flag2={true} />             
+                <div className="row justify-content-evenly align-items-center">
                     <img className="col-3" src={`${uservalue?.image}`} alt="foto"/>
-                    <div className="col-3" >
-                        <span className="col-6"> {uservalue?.firstname} </span>  <span className="col-6" > {uservalue?.lastname} </span>
+                    <div className="col-7" >   
+                        <div className="row" >                       
+                            <span className="col-3" > Celular</span> <span className="col-9"> {uservalue?.phoneNumber} </span>  
+                            <span className="col-3" > Dirección </span > <span className="col-9" > {uservalue?.address} </span>   
+                            <span className="col-3" > Email </span> <span className="col-9"  > {uservalue?.mail} </span> 
+                        </div>   
                     </div>
                 </div>
-                <div className="row justify-content-start" >      
-                    <span> {uservalue?.phoneNumber} </span>  
-                    <span> {uservalue?.address} </span>   
-                    <span> {uservalue?.mail} </span> 
+                <div className="row align-items-center">
+                    <h2>Materias</h2>
+                    <div  >
+                        <ul >
+                            {
+                                teacherMaterias?.newAsignatures?.map((asignature, index)=>
+                                    <li className="row  justify-content-center "  key={index}>
+                                        
+                                        <div className="col-6  " >
+                                                <div className="row " >
+                                                    <div className="col-6  ">{asignature}</div>
+                                                    
+                                                {
+                                                  flag &&  <button className="col-6 "  onClick={() => deleteAsignature(teacherMaterias.positionAsignature[index])} > Eliminar</button>
+                                                }
+                                                </div>
+                                        </div>
+                                    </li>    
+                                )
+                            }                        
+                        </ul>
+                    </div>
+                        {flag && <Asignarasignature  schedule={schedule}  />}
                 </div>
-                <div>
-                    <ul className="row" >
-                        {
-                            teacherMaterias?.newAsignatures?.map((asignature, index)=>
-                                <li className="col-3" key={index}>
-                                    {asignature}
-                                    {
-                                        <button onClick={() => deleteAsignature(teacherMaterias.positionAsignature[index])} > Eliminar</button>
-                                    }
-                                </li>    
-                            )
-                        }                        
-                    </ul>
-                </div>
-                <button className="col-3"  onClick={() => scheduleView()}  > Horario </button>
-                <Asignarasignature schedule={schedule}  />
+                        <button className="col-3 "  onClick={() => scheduleView()}  > Horario </button>
         </div>
     );
 }

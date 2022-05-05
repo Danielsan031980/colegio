@@ -33,14 +33,16 @@ const Userlist = () => {
                 {
                     users?.map((valor,index)=>
                         <li key={index} >
-                            <div>
-                                <img src={valor.image} alt="MDN" ></img>
-                                <span>{valor.firstname}  </span>
-                                <span>{valor.lastname}  </span>
-                                <span>{valor.rolType}  </span>
-                                <button  onClick={() => deleteUser(valor._id)}  >Eliminar</button>
-                                <button  onClick={() => navigate("/detail/" + valor._id) } >Ver Detalle</button>
-                                <button  onClick={() => navigate("/editUser/" + valor._id )}  >Editar</button>
+                            <div className="row align-items-center">
+                                <img className="col-2" src={valor.image} alt="MDN" ></img>
+                                <div className="col-2">
+                                    <span >{valor.firstname}  </span>
+                                    <span >{valor.lastname}  </span>
+                                </div>
+                                <span className="col-2">{valor.rolType}  </span>
+                                <button className="col-2"  onClick={() => deleteUser(valor._id)}  >Eliminar</button>
+                                <button className="col-2"  onClick={() => navigate("/detail/" + valor._id) } >Ver Detalle</button>
+                                <button  className="col-2" onClick={() => navigate("/editUser/" + valor._id )}  >Editar</button>
                             </div>
 
                             

@@ -1,15 +1,28 @@
-import React from 'react';
 import Navimage from './Navimage';
 import { useNavigate, useParams } from "react-router-dom";
+import { useUser } from "../contexts/userContext";
+import React, {useEffect, useState} from 'react';
 
 const Schedule = (props) => {
     const  {schedule} = props
     const navigate = useNavigate();
+    const { user, setUser } = useUser();
+    const [flag, setFlag] = useState();
 
-
+    useEffect(() => {    
+        if(!user){
+            navigate("/login");
+        }
+        else if(user.rolType === "administrador"){
+            setFlag(true)
+        }
+        else if(user.rolType === "profesor"){
+            setFlag(false)
+        }
+    },[]);
     return (
         <div>
-            <Navimage tittle= {"akjñlkd"}  flag1={false} flag2={true} /> 
+            <Navimage tittle= {"Horario Profesor"}  flag1={flag}  /> 
             <div className="row">
                 <div className="col-2" >Hora</div>
                 <div className="col-2" >Lunes</div>

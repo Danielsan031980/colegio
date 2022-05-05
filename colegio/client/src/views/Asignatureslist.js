@@ -7,6 +7,7 @@ import Navimage from './Navimage';
 
 const Asignatureslist = () => {
     const navigate = useNavigate();
+    const [flag, setFlag] = useState();
     const { user, setUser } = useUser();
     const [asignatures, setAsignatures] = useState()
     const  getData = async () =>{
@@ -22,21 +23,39 @@ const Asignatureslist = () => {
         await axios.delete("/api/delete/" + id, {withCredentials: true}) 
         getData()
     }
-    useEffect(() => {  
+    useEffect(() => { 
+        if(!user){
+            navigate("/login");
+        }
+        else if(user.rolType === "administrador"){
+            setFlag(true)
+  
+        }
+        else if(user.rolType === "profesor"){
+            setFlag(false)   
+        }  
         getData()
+        
     },[]);
     return (
         <div>
-            <Navimage tittle= {"akjñlkd"}  flag1={false} flag2={true} /> 
+            <Navimage tittle= {"Lista de Asignaturas"}  flag1={flag}  /> 
             <ul>
+                <div className="row justify-content-center " >
+                    <div className="col-3" >Materia</div>
+                    <div className="col-2" >Curso</div>
+                    <div className="col-3" ></div>
+                    <div className="col-3" ></div>
+                </div>
                 {
                     asignatures?.map((valor,index)=>
+                            
                         <li key={index} >
-                            <div>
-                                <span>{valor.nameAsignature}  </span>
-                                <span>{valor.grade}  </span>
-                                <button  onClick={() => navigate("/asignature/schedule/" + valor._id) } >Ver Horario</button>
-                                <button  onClick={() => navigate("/editAsignature/" + valor._id )}  >Editar</button>
+                            <div className="row">
+                                <span className="col-3" >{valor.nameAsignature}  </span>
+                                <span className="col-3" >{valor.grade}  </span>
+                                <button className="col-3"  onClick={() => navigate("/asignature/schedule/" + valor._id) } >Ver Horario</button>
+                                <button className="col-3" onClick={() => navigate("/editAsignature/" + valor._id )}  >Editar</button>
                             </div>
                         </li>
                     )

@@ -21,7 +21,7 @@ const Registeruser = (props) => {
 
 
     return (
-        <div className="Register">
+        <div >
             <Formik          
             initialValues={{
                 firstname:firstname, 
@@ -75,10 +75,10 @@ const Registeruser = (props) => {
                     values,
                     })=>{
                         return(
-                            <div  className="ventana-formulario-data row" >
+                            <div  className=" row" >
                                 <Form  className="form-group col-12"  onSubmit={handleSubmit}>
 
-                                      <div className="row form-divitions justify-content-between ">
+                                      <div className="row  justify-content-between ">
                                         <div className="col-6 ">
 
                                             <label htmlFor='firstname' className="col-sm-12" >Primer Nombre</label>

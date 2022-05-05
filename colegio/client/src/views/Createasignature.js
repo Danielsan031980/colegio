@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Registerasignature from '../components/Registerasignature';
 import axios from 'axios';
 import Navimage from './Navimage';
+import { useUser } from "../contexts/userContext";
+import { useNavigate} from "react-router-dom"
 
 const Createasignature = () => {
-    
+    const [flag, setFlag] = useState();
+    const navigate = useNavigate();
+    const { user, setUser } = useUser();
     const [errors, setErrors] = useState([]);
     const valuesCheck={
         monday:[false,false,false,false,false],
@@ -27,9 +31,23 @@ const Createasignature = () => {
         }) 
         
     }
+    useEffect(() => {    
+        if(!user){
+            navigate("/login");
+        }
+        else if(user.rolType === "administrador"){
+            setFlag(true)
+            
+        }
+        else if(user.rolType === "profesor"){
+
+            setFlag(false)
+        
+        }
+    },[]);
     return (
         <div>
-            <Navimage tittle= "Crear Nueva Materia" /> 
+            <Navimage tittle= "Crear Nueva Materia" flag1={flag} /> 
             <Registerasignature onSubmitProp={registerAsignature} nameAsignature="" grade=""  valuesCheck={valuesCheck}    />
         </div>
     );

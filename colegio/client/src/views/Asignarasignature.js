@@ -22,11 +22,7 @@ const Asignarasignature = (props) => {
             .then(res=>{
                 res.data.asignature.forEach((asignature, indexA)=>{
                     let flag=true
-                    //console.log("indexA:" + indexA)
                     schedule.monday.map((value, indexB)=>{
-                        // console.log("indexB:" + indexB)
-                        // console.log(value)
-                        // console.log(asignature.schedule.monday[indexB])
                         if( value !== "" &&  asignature.schedule.monday[indexB] === true ){
                          flag=false
                         }
@@ -67,7 +63,6 @@ const Asignarasignature = (props) => {
                     asignaturesIds:arrayIds
                 }
             )
-
             axios.get(`/api/user/${id}`, {withCredentials: true} )
             .then(res=>{
                 const arrayAsig = res.data.nameAsignatures[0]
@@ -75,9 +70,7 @@ const Asignarasignature = (props) => {
              })
              .catch(err=>{
                  return { success: false, data: err.message };
-            })     
-
-            
+            })
     }
     const asignAsignature= (values) => {
         const publishArray = {
@@ -98,7 +91,7 @@ const Asignarasignature = (props) => {
     }
     useEffect(() => { 
         compare()
-    },[uservalue]);
+    },[uservalue, asignatureSelection]);
     return (
         <div>
             <RegisterAsigForUser onSubmitProp={asignAsignature}  asignatureSelection={asignatureSelection.asignatures} asignatureIds={asignatureSelection.asignaturesIds}  />  

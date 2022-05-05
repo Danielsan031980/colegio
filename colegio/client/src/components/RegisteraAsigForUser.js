@@ -20,7 +20,7 @@ const RegisterAsigForUser = (props) => {
         <div className="Register">
             <Formik          
             initialValues={{
-                selector:"",
+                selector:asignatureSelection[0],
             }}
             validationSchema={ Yup.object().shape({
                 //    selector: Yup.string()
@@ -47,9 +47,9 @@ const RegisterAsigForUser = (props) => {
                     values,
                     })=>{
                         return(
-                            <div  className="" >
-                                <Form  className="form-group"  onSubmit={handleSubmit}>
-                                    <div className="row form-divitions justify-content-center ">
+                            <div  className=" row justify-content-center" >
+                                <Form  className="form-group col-3"  onSubmit={handleSubmit}>
+                                    <div className="row ">
                                         <label htmlFor="selector" className="row " >Agregar Materia</label>
                                         <Field className="form-select col-3" id='selector' type="text" as='select' name='selector'>
                                             {

@@ -21,7 +21,7 @@ const Registerasignature = (props) => {
 
 
     return (
-        <div className="Register">
+        <div >
             <Formik      
             initialValues={{
                 nameAsignature:nameAsignature, 
@@ -106,10 +106,10 @@ const Registerasignature = (props) => {
                     values,
                     })=>{
                         return(
-                            <div  className="ventana-formulario-data row" >
+                            <div  className="row" >
                                 <Form  className="form-group col-12"  onSubmit={handleSubmit}>
 
-                                      <div className="row form-divitions justify-content-between ">
+                                      <div className="row  justify-content-between ">
                                         <div className="col-12 ">
 
                                             <label htmlFor='nameAsignature' className="col-sm-12" >Nombre Materia</label>
@@ -143,151 +143,151 @@ const Registerasignature = (props) => {
                                                 </div>
                                             </div>
                                             <div className="row d-flex justify-content-around">
-                                                <div className="form-check form-check-inline col-1 ">
+                                                <div className="form-check  col-1 ">
                                                     <p>7:00 am</p>
                                                 </div>
-                                                <div className="form-check form-check-inline col-1 ">
-                                                    <Field className="form-check-input col-1" id="horario_1_1" type="checkbox" name="horario_1_1"  />
+                                                <div className="form-check  col-1 ">
+                                                    <Field  id="horario_1_1" type="checkbox" name="horario_1_1"  />
                                                     <label className="form-check-label" htmlFor='horario_1_1'></label>
                                                     {errors.horario_1_1 && touched.horario_1_1 && <p className='error'>{errors.horario_1_1} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_1_2" type="checkbox" name="horario_1_2"  checked={values.horario_1_2} />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_1_2" type="checkbox" name="horario_1_2"  checked={values.horario_1_2} />
                                                     <label className="form-check-label" htmlFor='horario_1_2'></label>
                                                     {errors.horario_1_2 && touched.horario_1_2 && <p className='error'>{errors.horario_1_2} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_1_3" type="checkbox" name="horario_1_3" checked={values.horario_1_3} />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_1_3" type="checkbox" name="horario_1_3" checked={values.horario_1_3} />
                                                     <label className="form-check-label" htmlFor='horario_1_3'></label>
                                                     {errors.horario_1_3 && touched.horario_1_3 && <p className='error'>{errors.horario_1_3} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_1_4" type="checkbox" name="horario_1_4" checked={values.horario_1_4} />
+                                                <div className="form-check col-1">
+                                                    <Field  id="horario_1_4" type="checkbox" name="horario_1_4" checked={values.horario_1_4} />
                                                     <label className="form-check-label" htmlFor='horario_1_4'></label>
                                                     {errors.horario_1_4 && touched.horario_1_4 && <p className='error'>{errors.horario_1_4} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-2 " id="horario_1_5" type="checkbox" name="horario_1_5" checked={values.horario_1_5}/>
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_1_5" type="checkbox" name="horario_1_5" checked={values.horario_1_5}/>
                                                     <label className="form-check-label" htmlFor='horario_1_5'></label>
                                                     {errors.horario_1_5 && touched.horario_1_5 && <p className='error'>{errors.horario_1_5} </p>}
                                                 </div>
                                             </div>
                                             <div className="row d-flex justify-content-around">
-                                                <div className="form-check form-check-inline col-1 ">
+                                                <div className="form-check  col-1 ">
                                                     <p>8:00 am</p>
                                                 </div>
-                                                <div className="form-check form-check-inline col-1 ">
-                                                    <Field className="form-check-input col-1" id="horario_2_1" type="checkbox" name="horario_2_1" checked={values.horario_2_1}/>
+                                                <div className="form-check  col-1 ">
+                                                    <Field  id="horario_2_1" type="checkbox" name="horario_2_1" checked={values.horario_2_1}/>
                                                     <label className="form-check-label" htmlFor='horario_2_1'></label>
                                                     {errors.horario_2_1 && touched.horario_2_1 && <p className='error'>{errors.horario_2_1} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_2_2" type="checkbox" name="horario_2_2" checked={values.horario_2_2} />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_2_2" type="checkbox" name="horario_2_2" checked={values.horario_2_2} />
                                                     <label className="form-check-label" htmlFor='horario_2_2'></label>
                                                     {errors.horario_2_2 && touched.horario_2_2 && <p className='error'>{errors.horario_2_2} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_2_3" type="checkbox" name="horario_2_3" checked={values.horario_2_3}/>
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_2_3" type="checkbox" name="horario_2_3" checked={values.horario_2_3}/>
                                                     <label className="form-check-label" htmlFor='horario_2_3'></label>
                                                     {errors.horario_2_3 && touched.horario_2_3 && <p className='error'>{errors.horario_2_3} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_2_4" type="checkbox" name="horario_2_4" checked={values.horario_2_4} />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_2_4" type="checkbox" name="horario_2_4" checked={values.horario_2_4} />
                                                     <label className="form-check-label" htmlFor='horario_2_4'></label>
                                                     {errors.horario_2_4 && touched.horario_2_4 && <p className='error'>{errors.horario_2_4} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-2 " id="horario_2_5" type="checkbox" name="horario_2_5" checked={values.horario_2_5} />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_2_5" type="checkbox" name="horario_2_5" checked={values.horario_2_5} />
                                                     <label className="form-check-label" htmlFor='horario_2_5'></label>
                                                     {errors.horario_2_5 && touched.horario_2_5 && <p className='error'>{errors.horario_2_5} </p>}
                                                 </div>
                                             </div>
                                             <div className="row d-flex justify-content-around">
-                                                <div className="form-check form-check-inline col-1 ">
+                                                <div className="form-check  col-1 ">
                                                     <p>9:00 am</p>
                                                 </div>
-                                                <div className="form-check form-check-inline col-1 ">
-                                                    <Field className="form-check-input col-1" id="horario_3_1" type="checkbox" name="horario_3_1" checked={values.horario_3_1} />
+                                                <div className="form-check  col-1 ">
+                                                    <Field  id="horario_3_1" type="checkbox" name="horario_3_1" checked={values.horario_3_1} />
                                                     <label className="form-check-label" htmlFor='horario_3_1'></label>
                                                     {errors.horario_3_1 && touched.horario_3_1 && <p className='error'>{errors.horario_3_1} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_3_2" type="checkbox" name="horario_3_2" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_3_2" type="checkbox" name="horario_3_2" />
                                                     <label className="form-check-label" htmlFor='horario_3_2'></label>
                                                     {errors.horario_3_2 && touched.horario_3_2 && <p className='error'>{errors.horario_3_2} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_3_3" type="checkbox" name="horario_3_3" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_3_3" type="checkbox" name="horario_3_3" />
                                                     <label className="form-check-label" htmlFor='horario_3_3'></label>
                                                     {errors.horario_3_3 && touched.horario_3_3 && <p className='error'>{errors.horario_3_3} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_3_4" type="checkbox" name="horario_3_4" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_3_4" type="checkbox" name="horario_3_4" />
                                                     <label className="form-check-label" htmlFor='horario_3_4'></label>
                                                     {errors.horario_3_4 && touched.horario_3_4 && <p className='error'>{errors.horario_3_4} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-2 " id="horario_3_5" type="checkbox" name="horario_3_5" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_3_5" type="checkbox" name="horario_3_5" />
                                                     <label className="form-check-label" htmlFor='horario_3_5'></label>
                                                     {errors.horario_3_5 && touched.horario_3_5 && <p className='error'>{errors.horario_3_5} </p>}
                                                 </div>
                                             </div>
                                             <div className="row d-flex justify-content-around">
-                                                <div className="form-check form-check-inline col-1 ">
+                                                <div className="form-check  col-1 ">
                                                     <p>10:00 am</p>
                                                 </div>
-                                                <div className="form-check form-check-inline col-1 ">
-                                                    <Field className="form-check-input col-1" id="horario_4_1" type="checkbox" name="horario_4_1" />
+                                                <div className="form-check  col-1 ">
+                                                    <Field  id="horario_4_1" type="checkbox" name="horario_4_1" />
                                                     <label className="form-check-label" htmlFor='horario_4_1'></label>
                                                     {errors.horario_4_1 && touched.horario_4_1 && <p className='error'>{errors.horario_4_1} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_4_2" type="checkbox" name="horario_4_2" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_4_2" type="checkbox" name="horario_4_2" />
                                                     <label className="form-check-label" htmlFor='horario_4_2'></label>
                                                     {errors.horario_4_2 && touched.horario_4_2 && <p className='error'>{errors.horario_4_2} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_4_3" type="checkbox" name="horario_4_3" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_4_3" type="checkbox" name="horario_4_3" />
                                                     <label className="form-check-label" htmlFor='horario_4_3'></label>
                                                     {errors.horario_4_3 && touched.horario_4_3 && <p className='error'>{errors.horario_4_3} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_4_4" type="checkbox" name="horario_4_4" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_4_4" type="checkbox" name="horario_4_4" />
                                                     <label className="form-check-label" htmlFor='horario_4_4'></label>
                                                     {errors.horario_4_4 && touched.horario_4_4 && <p className='error'>{errors.horario_4_4} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-2 " id="horario_4_5" type="checkbox" name="horario_4_5" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_4_5" type="checkbox" name="horario_4_5" />
                                                     <label className="form-check-label" htmlFor='horario_4_5'></label>
                                                     {errors.horario_4_5 && touched.horario_4_5 && <p className='error'>{errors.horario_4_5} </p>}
                                                 </div>
                                             </div>
                                             <div className="row d-flex justify-content-around">
-                                                <div className="form-check form-check-inline col-1 ">
+                                                <div className="form-check  col-1 ">
                                                     <p>11:00 am</p>
                                                 </div>
-                                                <div className="form-check form-check-inline col-1 ">
-                                                    <Field className="form-check-input col-1" id="horario_5_1" type="checkbox" name="horario_5_1" />
+                                                <div className="form-check  col-1 ">
+                                                    <Field  id="horario_5_1" type="checkbox" name="horario_5_1" />
                                                     <label className="form-check-label" htmlFor='horario_5_1'></label>
                                                     {errors.horario_5_1 && touched.horario_5_1 && <p className='error'>{errors.horario_5_1} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_5_2" type="checkbox" name="horario_5_2" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_5_2" type="checkbox" name="horario_5_2" />
                                                     <label className="form-check-label" htmlFor='horario_5_2'></label>
                                                     {errors.horario_5_2 && touched.horario_5_2 && <p className='error'>{errors.horario_5_2} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_5_3" type="checkbox" name="horario_5_3" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_5_3" type="checkbox" name="horario_5_3" />
                                                     <label className="form-check-label" htmlFor='horario_5_3'></label>
                                                     {errors.horario_5_3 && touched.horario_5_3 && <p className='error'>{errors.horario_5_3} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-1" id="horario_5_4" type="checkbox" name="horario_5_4" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_5_4" type="checkbox" name="horario_5_4" />
                                                     <label className="form-check-label" htmlFor='horario_5_4'></label>
                                                     {errors.horario_5_4 && touched.horario_5_4 && <p className='error'>{errors.horario_5_4} </p>}
                                                 </div>
-                                                <div className="form-check form-check-inline col-1">
-                                                    <Field className="form-check-input col-2 " id="horario_5_5" type="checkbox" name="horario_5_5" />
+                                                <div className="form-check  col-1">
+                                                    <Field  id="horario_5_5" type="checkbox" name="horario_5_5" />
                                                     <label className="form-check-label" htmlFor='horario_5_5'></label>
                                                     {errors.horario_5_5 && touched.horario_5_5 && <p className='error'>{errors.horario_5_5} </p>}
                                                 </div>

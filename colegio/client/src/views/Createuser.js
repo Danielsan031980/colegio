@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Registeruser from '../components/Registeruser';
 import Navimage from './Navimage';
 import axios from 'axios';
 import Registerasignature from '../components/Registerasignature';
+import { useNavigate} from "react-router-dom"
+import { useUser } from "../contexts/userContext";
 
 const Createuser = () => {
+    const navigate = useNavigate();
+    const { user, setUser } = useUser();
+    const [flag, setFlag] = useState();
     const [errors, setErrors] = useState([]); 
     const registerUser = (values) => {
         console.log("hola")
@@ -25,9 +30,21 @@ const Createuser = () => {
         }) 
         
     }
+    useEffect(() => {    
+        if(!user){
+            navigate("/login");
+        }
+        else if(user.rolType === "administrador"){
+            setFlag(true)
+        }
+        else if(user.rolType === "profesor"){
+
+            setFlag(false)
+        }
+    },[]);
     return (
         <div> 
-                 <Navimage tittle= "Crear Nuevo Usuario" /> 
+                 <Navimage tittle= "Crear Nuevo Usuario" flag1={flag} /> 
                   <Registeruser  className="col-6 " onSubmitProp={registerUser} firstname="" lastname="" mail="" ></Registeruser >  
                   
                 {/* {errors.map((err, index) => <div  key = {index} className="alert alert-danger" role="alert">{err}</div>)} */}
