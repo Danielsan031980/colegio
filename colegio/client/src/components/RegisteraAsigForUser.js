@@ -50,7 +50,7 @@ const RegisterAsigForUser = (props) => {
                             <div  className=" row justify-content-center" >
                                 <Form  className="form-group col-3"  onSubmit={handleSubmit}>
                                     <div className="row ">
-                                        <label htmlFor="selector" className="row " >Agregar Materia</label>
+                                        <label htmlFor="selector"> Agregar Materia </label>
                                         <Field className="form-select col-3" id='selector' type="text" as='select' name='selector'>
                                             {
                                                 asignatureIds?.map((value,index)=>

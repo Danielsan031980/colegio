@@ -10,19 +10,19 @@ const Asignarasignature = (props) => {
     const [errors, setErrors] = useState([]);
     const [uservalue, setUservalue] = useState();
     const [asignatureSelection, setAsignatureSelection] = useState({
-        asignatures:[""],
+        asignatures:["Elegir"],
         asignaturesIds:[""]
     }
     );
     const {schedule} = props
     const compare = async (values) => {
-        const array = []
-        const arrayIds = []
+        const array = ["Elegir"]
+        const arrayIds = [""]
         const response = await axios.get("/api/asignature/", {withCredentials: true})
             .then(res=>{
                 res.data.asignature.forEach((asignature, indexA)=>{
                     let flag=true
-                    schedule.monday.map((value, indexB)=>{
+                    schedule.monday.forEach((value, indexB)=>{
                         if( value !== "" &&  asignature.schedule.monday[indexB] === true ){
                          flag=false
                         }
@@ -65,7 +65,6 @@ const Asignarasignature = (props) => {
             )
             axios.get(`/api/user/${id}`, {withCredentials: true} )
             .then(res=>{
-                const arrayAsig = res.data.nameAsignatures[0]
                 setUservalue(res.data)
              })
              .catch(err=>{
@@ -76,22 +75,18 @@ const Asignarasignature = (props) => {
         const publishArray = {
             nameAsignatures:[...uservalue.nameAsignatures, values.selector]
         }
-        console.log(publishArray)
-        
         axios.put(`/api/user/update/${id}`, publishArray, {withCredentials: true} )
         .then(res=>{
-           
          })
          .catch(err=>{
              return { success: false, data: err.message };
         })        
-
         compare(values)
-        
     }
+    
     useEffect(() => { 
         compare()
-    },[uservalue, asignatureSelection]);
+    },[asignatureSelection]);
     return (
         <div>
             <RegisterAsigForUser onSubmitProp={asignAsignature}  asignatureSelection={asignatureSelection.asignatures} asignatureIds={asignatureSelection.asignaturesIds}  />  

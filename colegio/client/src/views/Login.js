@@ -53,7 +53,7 @@ const Login = () => {
     },[]);
     return (
         <div className="col-12 main-login" >
-            <Navimage tittle= "Bienvenidos al Colegio Virtual"  flag1={true} flag2={false}  />
+            <Navimage tittle= "Bienvenidos al Colegio Virtual"  flag1={false} />
             {errors.map((err, index) => <div key={index} className={`alert alert-danger`} role="alert">{err}</div>)}
             <LoginForm onSubmitProp={loginUser}></LoginForm>
         </div>

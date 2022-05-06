@@ -22,7 +22,8 @@ function App() {
     tuesday:["","","","",""],
     wednesday:["","","","",""],
     thursday:["","","","",""],
-    friday:["","","","",""]
+    friday:["","","","",""],
+    userName:""
 })
 
 
@@ -46,7 +47,6 @@ function App() {
             <Route path="/asignaturelist" element={<Asignatureslist/>} />
             <Route path="/asignature/schedule/:id" element={<Scheduleasignature/>} />
             <Route path="/editAsignature/:id" element={<Editasignature/>} />
-            {/* <Route path="/editAsignature/:id" element={<Edituser/>} /> */}
           </Routes>
         </Router>
       </UserProvider>

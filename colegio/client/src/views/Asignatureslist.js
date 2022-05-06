@@ -20,7 +20,8 @@ const Asignatureslist = () => {
             })  
     }
     const  deleteAsignature = async (id) => {
-        await axios.delete("/api/delete/" + id, {withCredentials: true}) 
+        
+        // await axios.delete("/api/delete/" + id, {withCredentials: true}) 
         getData()
     }
     useEffect(() => { 
@@ -41,9 +42,9 @@ const Asignatureslist = () => {
         <div>
             <Navimage tittle= {"Lista de Asignaturas"}  flag1={flag}  /> 
             <ul>
-                <div className="row justify-content-center " >
+                <div className="row justify-content-center titulo-lista-asignaturas " >
                     <div className="col-3" >Materia</div>
-                    <div className="col-2" >Curso</div>
+                    <div className="col-3" >Curso</div>
                     <div className="col-3" ></div>
                     <div className="col-3" ></div>
                 </div>
@@ -54,8 +55,9 @@ const Asignatureslist = () => {
                             <div className="row">
                                 <span className="col-3" >{valor.nameAsignature}  </span>
                                 <span className="col-3" >{valor.grade}  </span>
-                                <button className="col-3"  onClick={() => navigate("/asignature/schedule/" + valor._id) } >Ver Horario</button>
-                                <button className="col-3" onClick={() => navigate("/editAsignature/" + valor._id )}  >Editar</button>
+                                <button className="col-2"  onClick={() => navigate("/asignature/schedule/" + valor._id) } >Ver Horario</button>
+                                <button className="col-2" onClick={() => navigate("/editAsignature/" + valor._id )}  >Editar</button>
+                                <button className="col-2" onClick={() => deleteAsignature()}  >Eliminar</button>
                             </div>
                         </li>
                     )

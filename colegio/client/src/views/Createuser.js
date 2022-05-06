@@ -44,8 +44,8 @@ const Createuser = () => {
     },[]);
     return (
         <div> 
-                 <Navimage tittle= "Crear Nuevo Usuario" flag1={flag} /> 
-                  <Registeruser  className="col-6 " onSubmitProp={registerUser} firstname="" lastname="" mail="" ></Registeruser >  
+                <Navimage tittle= "Crear Nuevo Usuario" flag1={flag} /> 
+                <Registeruser  className="col-6 " onSubmitProp={registerUser} firstname="" lastname="" mail="" ></Registeruser >  
                   
                 {/* {errors.map((err, index) => <div  key = {index} className="alert alert-danger" role="alert">{err}</div>)} */}
         </div>
