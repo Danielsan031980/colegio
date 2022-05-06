@@ -14,9 +14,11 @@ import Createasignature from './views/Createasignature';
 import Asignatureslist from './views/Asignatureslist';
 import Scheduleasignature from './views/Scheduleasignature';
 import Editasignature from './views/Editasignature';
+import Firstlogin from './views/Firstlogin';
 
 
 function App() {
+  const [flag2, setFlag2] = useState(true);
   const [schedule, setSchedule] = useState({
     monday:["","","","",""],
     tuesday:["","","","",""],
@@ -36,7 +38,8 @@ function App() {
           {/* <Link to="/">Home</Link> */}
           {/* <Link to="/registro">logout</Link> */}
           <Routes>           
-            <Route path="/login" element={<Login/>} />
+            <Route path="/login" element={<Login flag2={flag2}/>} />
+            <Route path="/firstlogin" element={<Firstlogin flag2={flag2}/>} />
             <Route path="/main" element={<Main/>} />
             <Route path="/detail/:id" element={<Detail setSchedule={setSchedule} schedule={schedule}/>} />
             <Route path="/schedule/:id" element={<Schedule schedule={schedule}/>} />

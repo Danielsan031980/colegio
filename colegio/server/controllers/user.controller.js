@@ -100,18 +100,6 @@ module.exports.Register = async (req, res) => {
   };
 
 
-  // module.exports.updateUser= async (req, res) => {
-  //   try {
-  //     console.log("aqui")
-  //     const { id } = req.params;
-  //     const user = await User.findOneAndUpdate(id, req.body, { new: true }).exec();
-  //     res.json(user);
-  //     console.log(res.data)
-  //   } catch (e) {
-  //     console.error(e);
-  //     return { success: false, data: e.message };
-  //   }
-  // };
 
   module.exports.updateUser = (req, res) => {
     
@@ -120,3 +108,9 @@ module.exports.Register = async (req, res) => {
       .catch(err => res.status(400).json(err));
   };
 
+  module.exports.collections = (req, res) => {
+    User.findOne()
+    .then((collections) => response.json(collections))
+    .catch((err) => response.json(err));
+
+  }

@@ -2,22 +2,27 @@ import React, {useState, useEffect} from 'react';
 import Registeruser from '../components/Registeruser';
 import Navimage from './Navimage';
 import axios from 'axios';
-import Registerasignature from '../components/Registerasignature';
 import { useNavigate} from "react-router-dom"
 import { useUser } from "../contexts/userContext";
 
-const Createuser = () => {
-    const navigate = useNavigate();
+const Firstlogin = () => {
     const { user, setUser } = useUser();
-    const [flag, setFlag] = useState();
     const [errors, setErrors] = useState([]); 
-    const registerUser = (values) => {
-        console.log("hola")
-        console.log(values)
-        console.log("hola")
-        axios.post('/api/register/', values)
+    const navigate = useNavigate();
+
+    const registerUser = () => {
+        const values = {
+            firstname:"admin",
+            lastname:"admin",
+            image:" ",
+            mail:"admin@admin.com",
+            pass:"primeradmin123",
+            confirmPassword:"primeradmin123",
+            rolType:"administrador",
+            address: " ",
+        }
+       axios.post('/api/register/', values)
         .catch(err=>{
-            console.log(err)
             console.log(err)
             const errorResponse = err.response.data.errors; // Get the errors from err.response.data
             const errorArr = []; // Define a temp error array to push the messages in
@@ -28,26 +33,22 @@ const Createuser = () => {
             setErrors(errorArr);
             console.log(errorArr)
         }) 
-        
-    }
-    useEffect(() => {    
-        if(!user){
-            navigate("/login");
-        }
-        else if(user.rolType === "administrador"){
-            setFlag(true)
-        }
-        else if(user.rolType === "profesor"){
 
-            setFlag(false)
-        }
+    }
+
+    const returnfunction = () => {    
+        navigate("/main");
+    }
+    useEffect(() => {   
+         registerUser()
     },[]);
     return (
-        <div> 
-            <Navimage tittle= "Crear Nuevo Usuario" flag1={flag} /> 
-            <Registeruser  className="col-6 " onSubmitProp={registerUser} firstname="" lastname="" mail="" ></Registeruser >  
+        <div>
+            <p> se ha creado user: admin@admin.com y password: primeradmin123</p>
+            <p> por favor eliminar despues del primer ingreso</p>
+            <button className="col-3 "  onClick={() => returnfunction()}  > Reresar </button>
         </div>
     );
 }
 
-export default Createuser;
+export default Firstlogin;

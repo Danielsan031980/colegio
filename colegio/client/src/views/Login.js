@@ -5,7 +5,7 @@ import { useUser } from '../contexts/userContext';
 import axios from 'axios';
 import Navimage from './Navimage';
 
-const Login = () => {
+const Login = (props) => {
 
     const {setUser}=useUser();
     const [errors, setErrors] = useState([]);
@@ -53,7 +53,7 @@ const Login = () => {
     },[]);
     return (
         <div className="col-12 main-login" >
-            <Navimage tittle= "Bienvenidos al Colegio Virtual"  flag1={false} />
+            <Navimage tittle= "Bienvenidos al Colegio Virtual"  flag1={false} flag2={props.flag2}  />
             {errors.map((err, index) => <div key={index} className={`alert alert-danger`} role="alert">{err}</div>)}
             <LoginForm onSubmitProp={loginUser}></LoginForm>
         </div>

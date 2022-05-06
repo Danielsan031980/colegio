@@ -14,6 +14,7 @@ module.exports = app => {
     app.post("/api/register", UserController.Register);
     app.post("/api/login", UserController.Login);
     app.post("/api/logout", UserController.Logout);
+    app.get('/api/collection', UserController.collections);
     //Para acceder a estas rutas hay que estar autenticado.
     app.put("/api/user/update/:id", authenticate, UserController.updateUser);
     app.delete("/api/delete/:id", authenticate, UserController.deleteUser);

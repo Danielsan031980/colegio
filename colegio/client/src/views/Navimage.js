@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom"
 import { useUser } from "../contexts/userContext";
 import logout from '../accions/logout';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Firstlogin from './Firstlogin';
 
 const Navimage = (props) => {
     const {onPropsSubmit, tittle, flag1, flag2} = props
@@ -36,6 +37,7 @@ const Navimage = (props) => {
             <h1> Colegio Nueva Virtualidad </h1>
             <h2 className="col-9 classh1" >{tittle}</h2>
             <nav className="row justify-content-around">
+                {flag2 && <Link className="col-2 " to="/firstlogin" >Firstlogin</Link>}
                 <Link className="col-2 " to="/" >Home</Link>
                 <Link className="col-2 " to="/login" onClick={() => logOut()}>Logout</Link>
                 {flag1 && <Link className="col-2 " to="/createUser" onClick={() => CreateNewUser()}>Nuevo Usuario</Link>}

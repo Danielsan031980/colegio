@@ -20,3 +20,5 @@ mongoose.connect(process.env.DB_LINK, {
 })
 	.then(() => console.log("BASES DE DATOS OPERACIONAL"))
 	.catch(err => console.log("Algo salió mal", err));
+
+
