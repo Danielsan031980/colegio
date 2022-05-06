@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate} from "react-router-dom"
 import { useUser } from "../contexts/userContext";
 
-const Firstlogin = () => {
+const Firstlogin = (props) => {
     const { user, setUser } = useUser();
     const [errors, setErrors] = useState([]); 
     const navigate = useNavigate();
@@ -36,7 +36,8 @@ const Firstlogin = () => {
 
     }
 
-    const returnfunction = () => {    
+    const returnfunction = () => { 
+        props.setFlag2(false)   
         navigate("/main");
     }
     useEffect(() => {   

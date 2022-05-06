@@ -39,7 +39,7 @@ function App() {
           {/* <Link to="/registro">logout</Link> */}
           <Routes>           
             <Route path="/login" element={<Login flag2={flag2}/>} />
-            <Route path="/firstlogin" element={<Firstlogin flag2={flag2}/>} />
+            <Route path="/firstlogin" element={<Firstlogin flag2={flag2} setFlag2={setFlag2}/>} />
             <Route path="/main" element={<Main/>} />
             <Route path="/detail/:id" element={<Detail setSchedule={setSchedule} schedule={schedule}/>} />
             <Route path="/schedule/:id" element={<Schedule schedule={schedule}/>} />
