@@ -36,6 +36,7 @@ const RegisterAsigForUser = (props) => {
                 setFormstatus(true)
                 setTimeout(()=>{ 
                     resetForm() 
+                    setFormstatus(false)
                 }, 10000)
             }}
             >

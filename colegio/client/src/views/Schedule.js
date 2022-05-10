@@ -22,7 +22,7 @@ const Schedule = (props) => {
     },[]);
     return (
         <div>
-            <Navimage tittle= {schedule.userName}  flag1={flag}  /> 
+            <Navimage tittle= {schedule.userName}  flag1={flag} flag2={false}  /> 
             <div className="row">
                 <div className="col-2" >Hora</div>
                 <div className="col-2" >Lunes</div>

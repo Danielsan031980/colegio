@@ -12,7 +12,7 @@ const Registeruser = (props) => {
     let navigate = useNavigate();
     //let { id } = useParams();
     //cambia validaciones de backup al front
-    const flag_errors = false;
+    const flag_errors = true;
     const { firstname, lastname, image, mail, address, phoneNumber, rolType, onSubmitProp, pass, confirmPassword} = props 
     useEffect(() => {  
    
@@ -34,37 +34,33 @@ const Registeruser = (props) => {
                 pass:pass
             }}
             validationSchema={ Yup.object().shape({
-                //    firstname: Yup.string()
-                //    .min(3,"first name too short")
-                //    .max(30,"first name too long")
-                //    .required("Please write your name"),
-                //    lastname: Yup.string()
-                //    .min(3,"last name too short")
-                //    .max(30,"last name too long")
-                //    .required("Please write your name"),
-                //    image: Yup.string()
-                //    .required("Please write your url image"), 
-                //    mail: Yup.string()
-                //    .email("Correo no valido")
-                //    .min(3, "Este correo electrónico es incorrecto")
-                //    .required("Por favor, ingresa un correo electrónico válido"),
-                //    address: Yup.string()
-                //    .min(3,"address too short")
-                //    .max(30,"address too long")
-                //    .required("Please write your address")
+                    firstname: Yup.string()
+                    .min(3,"first name too short")
+                    .max(30,"first name too long")
+                    .required("Please write your name"),
+                    lastname: Yup.string()
+                    .min(3,"last name too short")
+                    .max(30,"last name too long")
+                    .required("Please write your name"),
+                    image: Yup.string()
+                    .required("Please write your url image"), 
+                    mail: Yup.string()
+                    .email("Correo no valido")
+                    .min(3, "Este correo electrónico es incorrecto")
+                    .required("Por favor, ingresa un correo electrónico válido"),
+                    address: Yup.string()
+                    .min(3,"address too short")
+                    .max(50,"address too long")
+                    .required("Please write your address")
 
             })}
             onSubmit={(values,{ setSubmitting, resetForm })=>{
                 setSubmitting(false);
-                console.log("hola1")
-                console.log(values)
-                console.log("hola1")
-                onSubmitProp(values)  
-                // navigate('/') 
+                onSubmitProp(values)
                 setFormstatus(true)
                 setTimeout(()=>{ 
-                    //resetForm() 
-                }, 10000)
+                    navigate('/')  
+                }, 1000)
             }}
             >
             {({errors,

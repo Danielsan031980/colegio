@@ -14,13 +14,13 @@ const LoginForm = (props) => {
         }}
         validationSchema={Yup.object().shape({
             email: Yup.string()
-            // .email("Correo no valido")
-            // .min(3, "Este correo electrónico es incorrecto")
-            // .required("Por favor, ingresa un correo electrónico válido"),
+            .email("Correo no valido")
+            .min(3, "Este correo electrónico es incorrecto")
+            .required("Por favor, ingresa un correo electrónico válido"),
             
-            // password: Yup.string()
-            // .min(8, "La clave debe contener más de 8 caractes")
-            // .required("Por favor ingrese una contraseña")
+            password: Yup.string()
+            .min(8, "La clave debe contener más de 8 caractes")
+            .required("Por favor ingrese una contraseña")
         })}
 
         onSubmit={(values, {setSubmitting}) =>{

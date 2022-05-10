@@ -10,10 +10,11 @@ const Detail = (props) => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { user } = useUser();
-    const { setSchedule, schedule } = props
+    const { setSchedule, schedule, asignaturelist, setAsignaturelist, onSubmitprop } = props
     const [uservalue, setUservalue] = useState()
     const [teacherMaterias, setTeacherMaterias] = useState()
     const [flag, setFlag] = useState();
+    const [flagAdmin, setFlagAdmin] = useState();
     //data from function asignature.
 
     const asignatures = async  (uservalue) => {
@@ -32,7 +33,8 @@ const Detail = (props) => {
             userName:""
         }
         // calculo asignaturas, Ids disponibles, matriz de IDs
-        response.asignature.forEach((value)=>{
+        
+        response.asignature.forEach((value, index)=>{
             uservalue.nameAsignatures.forEach((asignature) => {
                 if(asignature === value._id) {    
                     newAsignatures.push(value.nameAsignature)
@@ -98,24 +100,25 @@ const Detail = (props) => {
         navigate("/schedule/"+ id)
     }
     const  deleteAsignature = async (id) => {
-            const newArray = uservalue.nameAsignatures.filter((asignature)=>{
-                if(asignature !==id ){
-                    return asignature
-                }           
-            })
-            const publishArray = {
-                nameAsignatures:newArray 
-            }
-            console.log(publishArray)
 
-            axios.put(`/api/user/update/${uservalue._id}`, publishArray, {withCredentials: true} )
-               .then(res=>{
-                    setUservalue(res.data)
-                    console.log(res.data)
-                })
-                .catch(err=>{
-                    return { success: false, data: err.message };
-               })        
+        const newArray = uservalue.nameAsignatures.filter((asignature)=>{
+            if(asignature !==id ){
+                return asignature
+            }           
+        })
+        const publishArray = {
+            nameAsignatures:newArray 
+        }
+        axios.put(`/api/user/update/${uservalue._id}`, publishArray, {withCredentials: true} )
+            .then(res=>{
+                setUservalue(res.data)
+                console.log(res.data.api)
+            })
+            .catch(err=>{
+                return { success: false, data: err.message };
+            }) 
+            onSubmitprop()      
+
     }
     useEffect(() => {  
         if(!user){
@@ -123,18 +126,26 @@ const Detail = (props) => {
         }
         else if(user.rolType === "administrador"){
             setFlag(true)
+            if(uservalue?.rolType === "administrador"){
+                setFlagAdmin(false)
+            }
+            else{
+                setFlagAdmin(true)
+            }
+            
         }
         else if(user.rolType === "profesor"){
-
             setFlag(false)
+            setFlagAdmin(false)
         }
+       
         getData()
-    }, [uservalue])
+    }, [uservalue, asignaturelist])
 
     return (
 
         <div >
-            <Navimage tittle= {uservalue?.firstname + "  " + uservalue?.lastname}   flag1={flag} flag2={true} />             
+            <Navimage tittle= {uservalue?.firstname + "  " + uservalue?.lastname}   flag1={flag} flag2={false} />             
                 <div className="row justify-content-evenly align-items-center  data-detail">
                     <img className="col-3" src={`${uservalue?.image}`} alt="foto"/>
                     <div className="col-7" >   
@@ -147,14 +158,14 @@ const Detail = (props) => {
                     </div>
                 </div>
                 <div className="row align-items-center">
-                    <h2>Materias</h2>
+                     <h2>Materias</h2>
                     <div  >
                         <ul >
                             {
                                 teacherMaterias?.newAsignatures?.map((asignature, index)=>
                                     <li className="row  justify-content-center "  key={index}> 
                                         <div className="col-6  " >
-                                                <div className="row " >
+                                                <div className="row  justify-content-center" >
                                                     <div className="col-6">{asignature}</div>
                                                 {flag &&  <button className="col-6 "  onClick={() => deleteAsignature(teacherMaterias.positionAsignature[index])} > Eliminar</button>}
                                                 </div>
@@ -164,9 +175,9 @@ const Detail = (props) => {
                             }                        
                         </ul>
                     </div>
-                        {flag && <Asignarasignature schedule={schedule}  />}
+                        {flagAdmin && <Asignarasignature schedule={schedule} asignaturelist={asignaturelist} setAsignaturelist={setAsignaturelist} onSubmitprop={onSubmitprop} />}
                 </div>
-                        <button className="col-3 "  onClick={() => scheduleView()}  > Horario </button>
+                        {flagAdmin && <button className="col-3 "  onClick={() => scheduleView()}  > Horario </button>}
         </div>
     );
 }

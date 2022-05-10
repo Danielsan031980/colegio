@@ -12,13 +12,8 @@ const Registerasignature = (props) => {
     let navigate = useNavigate();
     //let { id } = useParams();
     //cambia validaciones de backup al front
-    const flag_errors = false;
+    const flag_errors = true;
     const { nameAsignature, grade,  onSubmitProp, valuesCheck} = props 
-    // useEffect(() => {  
-   
-    // },[]);
-
-
 
     return (
         <div >
@@ -53,14 +48,14 @@ const Registerasignature = (props) => {
                 horario_1_5:valuesCheck.friday[4]
             }}
             validationSchema={ Yup.object().shape({
-                //    nameAsignature: Yup.string()
-                //    .min(3,"first name too short")
-                //    .max(30,"first name too long")
-                //    .required("Please write your name"),
-                //    grade: Yup.string()
-                //    .min(3,"last name too short")
-                //    .max(30,"last name too long")
-                //    .required("Please write your name"),
+                    nameAsignature: Yup.string()
+                    .min(3,"Asignature name too short")
+                    .max(30,"Asignature name too long")
+                    .required("Please write your name"),
+                    grade: Yup.string()
+                    .min(1,"Grade name too short")
+                    .max(15,"Grade name too long")
+                    .required("Please write your grade name"),
                 //    Schedule: Yup.string()
                 //    .required("Please write your url Schedule"), 
                 //    mail: Yup.string()
@@ -77,7 +72,6 @@ const Registerasignature = (props) => {
             })}
             onSubmit={(values,{ setSubmitting, resetForm })=>{
                 setSubmitting(false);
-                console.log(values)
                 const values2 = {
                     nameAsignature:values.nameAsignature,
                     grade:values.grade,
@@ -91,11 +85,10 @@ const Registerasignature = (props) => {
                 }
 
                 onSubmitProp(values2)  
-                // navigate('/') 
-                setFormstatus(true)
+                setFormstatus(false)
                 setTimeout(()=>{ 
-                    //resetForm() 
-                }, 10000)
+                    navigate('/asignaturelist') 
+                }, 1000)
             }}
             >
             {({errors,
@@ -113,11 +106,11 @@ const Registerasignature = (props) => {
                                         <div className="col-12 ">
 
                                             <label htmlFor='nameAsignature' className="col-sm-12" >Nombre Materia</label>
-                                            <Field className="col-sm-6" onChange={handleChange} onBlur={handleBlur}  id="nameAsignature" type="text" placeholder={nameAsignature} name="nameAsignature"   ></Field>
+                                            <Field className="col-sm-6"   id="nameAsignature" type="text" placeholder={nameAsignature} name="nameAsignature"   ></Field>
                                             {flag_errors && <ErrorMessage name="nameAsignature">{(msg)=> <p className='error'>{msg}</p>}</ErrorMessage>}                                                              
 
                                             <label htmlFor='grade' className="col-sm-12" >Grado</label>
-                                            <Field className="col-sm-6" onChange={handleChange} onBlur={handleBlur}  id="grade" type="text" placeholder={grade} name="grade" ></Field>
+                                            <Field className="col-sm-6" id="grade" type="text" placeholder={grade} name="grade" ></Field>
                                             {flag_errors && <ErrorMessage name="grade">{(msg)=> <p className='error'>{msg}</p>}</ErrorMessage>}                                                              
 
 
@@ -147,27 +140,27 @@ const Registerasignature = (props) => {
                                                     <p>7:00 am</p>
                                                 </div>
                                                 <div className="form-check  col-1 ">
-                                                    <Field  id="horario_1_1" type="checkbox" name="horario_1_1"  />
+                                                    <Field  id="horario_1_1" type="checkbox" name="horario_1_1"  checked={values.horario_1_1}  />
                                                     <label className="form-check-label" htmlFor='horario_1_1'></label>
                                                     {errors.horario_1_1 && touched.horario_1_1 && <p className='error'>{errors.horario_1_1} </p>}
                                                 </div>
                                                 <div className="form-check  col-1">
-                                                    <Field  id="horario_1_2" type="checkbox" name="horario_1_2"  checked={values.horario_1_2} />
+                                                    <Field  id="horario_1_2" type="checkbox" name="horario_1_2"   />
                                                     <label className="form-check-label" htmlFor='horario_1_2'></label>
                                                     {errors.horario_1_2 && touched.horario_1_2 && <p className='error'>{errors.horario_1_2} </p>}
                                                 </div>
                                                 <div className="form-check  col-1">
-                                                    <Field  id="horario_1_3" type="checkbox" name="horario_1_3" checked={values.horario_1_3} />
+                                                    <Field  id="horario_1_3" type="checkbox" name="horario_1_3"  />
                                                     <label className="form-check-label" htmlFor='horario_1_3'></label>
                                                     {errors.horario_1_3 && touched.horario_1_3 && <p className='error'>{errors.horario_1_3} </p>}
                                                 </div>
                                                 <div className="form-check col-1">
-                                                    <Field  id="horario_1_4" type="checkbox" name="horario_1_4" checked={values.horario_1_4} />
+                                                    <Field  id="horario_1_4" type="checkbox" name="horario_1_4"  />
                                                     <label className="form-check-label" htmlFor='horario_1_4'></label>
                                                     {errors.horario_1_4 && touched.horario_1_4 && <p className='error'>{errors.horario_1_4} </p>}
                                                 </div>
                                                 <div className="form-check  col-1">
-                                                    <Field  id="horario_1_5" type="checkbox" name="horario_1_5" checked={values.horario_1_5}/>
+                                                    <Field  id="horario_1_5" type="checkbox" name="horario_1_5" />
                                                     <label className="form-check-label" htmlFor='horario_1_5'></label>
                                                     {errors.horario_1_5 && touched.horario_1_5 && <p className='error'>{errors.horario_1_5} </p>}
                                                 </div>
@@ -177,22 +170,22 @@ const Registerasignature = (props) => {
                                                     <p>8:00 am</p>
                                                 </div>
                                                 <div className="form-check  col-1 ">
-                                                    <Field  id="horario_2_1" type="checkbox" name="horario_2_1" checked={values.horario_2_1}/>
+                                                    <Field  id="horario_2_1" type="checkbox" name="horario_2_1" />
                                                     <label className="form-check-label" htmlFor='horario_2_1'></label>
                                                     {errors.horario_2_1 && touched.horario_2_1 && <p className='error'>{errors.horario_2_1} </p>}
                                                 </div>
                                                 <div className="form-check  col-1">
-                                                    <Field  id="horario_2_2" type="checkbox" name="horario_2_2" checked={values.horario_2_2} />
+                                                    <Field  id="horario_2_2" type="checkbox" name="horario_2_2"  />
                                                     <label className="form-check-label" htmlFor='horario_2_2'></label>
                                                     {errors.horario_2_2 && touched.horario_2_2 && <p className='error'>{errors.horario_2_2} </p>}
                                                 </div>
                                                 <div className="form-check  col-1">
-                                                    <Field  id="horario_2_3" type="checkbox" name="horario_2_3" checked={values.horario_2_3}/>
+                                                    <Field  id="horario_2_3" type="checkbox" name="horario_2_3" />
                                                     <label className="form-check-label" htmlFor='horario_2_3'></label>
                                                     {errors.horario_2_3 && touched.horario_2_3 && <p className='error'>{errors.horario_2_3} </p>}
                                                 </div>
                                                 <div className="form-check  col-1">
-                                                    <Field  id="horario_2_4" type="checkbox" name="horario_2_4" checked={values.horario_2_4} />
+                                                    <Field  id="horario_2_4" type="checkbox" name="horario_2_4"  />
                                                     <label className="form-check-label" htmlFor='horario_2_4'></label>
                                                     {errors.horario_2_4 && touched.horario_2_4 && <p className='error'>{errors.horario_2_4} </p>}
                                                 </div>

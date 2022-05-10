@@ -9,7 +9,7 @@ const Firstlogin = (props) => {
     const { user, setUser } = useUser();
     const [errors, setErrors] = useState([]); 
     const navigate = useNavigate();
-
+    
     const registerUser = () => {
         const values = {
             firstname:"admin",
@@ -41,13 +41,15 @@ const Firstlogin = (props) => {
         navigate("/main");
     }
     useEffect(() => {   
-         registerUser()
+         if(!user){
+            registerUser()
+         }
     },[]);
     return (
         <div>
             <p> se ha creado user: admin@admin.com y password: primeradmin123</p>
             <p> por favor eliminar despues del primer ingreso</p>
-            <button className="col-3 "  onClick={() => returnfunction()}  > Reresar </button>
+            <button className="col-3 "  onClick={() => returnfunction()}  > Regresar </button>
         </div>
     );
 }

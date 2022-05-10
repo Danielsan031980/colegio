@@ -5,11 +5,13 @@ import { useUser } from "../contexts/userContext";
 import axios from 'axios';
 import Navimage from './Navimage';
 
-const Asignatureslist = () => {
+const Asignatureslist = (props) => {
     const navigate = useNavigate();
     const [flag, setFlag] = useState();
+    const [flagEliminar, setFlagEliminar] = useState(false);
     const { user, setUser } = useUser();
     const [asignatures, setAsignatures] = useState()
+    const {asignaturelist, setAsignaturelist, onSubmitprop} = props
     const  getData = async () =>{
         await axios.get("/api/asignature/", {withCredentials: true})
             .then(res=>{
@@ -20,9 +22,27 @@ const Asignatureslist = () => {
             })  
     }
     const  deleteAsignature = async (id) => {
-        
-        // await axios.delete("/api/delete/" + id, {withCredentials: true}) 
+
+        onSubmitprop()
+        const asignaturelist2 = asignaturelist.free.materia.filter((valor)=> {
+            if(valor._id === id){
+                console.log("entre")
+                axios.delete("/api/asignature/delete/" + id) 
+                .then(res=>{
+                        console.log(res)                
+                })
+                .catch(err=>{
+                    return { success: false, data: err.message };
+                })  
+                return valor
+            }
+            else{
+                setFlagEliminar(true)
+            }
+        })
         getData()
+    
+        
     }
     useEffect(() => { 
         if(!user){
@@ -35,13 +55,14 @@ const Asignatureslist = () => {
         else if(user.rolType === "profesor"){
             setFlag(false)   
         }  
+        onSubmitprop()
         getData()
         
-    },[]);
+    },[asignatures]);
     return (
         <div>
             <Navimage tittle= {"Lista de Asignaturas"}  flag1={flag}  /> 
-            <ul>
+             <ul>
                 <div className="row justify-content-center titulo-lista-asignaturas " >
                     <div className="col-3" >Materia</div>
                     <div className="col-3" >Curso</div>
@@ -55,14 +76,17 @@ const Asignatureslist = () => {
                             <div className="row">
                                 <span className="col-3" >{valor.nameAsignature}  </span>
                                 <span className="col-3" >{valor.grade}  </span>
-                                <button className="col-2"  onClick={() => navigate("/asignature/schedule/" + valor._id) } >Ver Horario</button>
-                                <button className="col-2" onClick={() => navigate("/editAsignature/" + valor._id )}  >Editar</button>
-                                <button className="col-2" onClick={() => deleteAsignature()}  >Eliminar</button>
+                                <button className="col-2 btn btn-primary"  onClick={() => navigate("/asignature/schedule/" + valor._id) } >Ver Horario</button>
+                                <button className="col-2 btn btn-secondary" onClick={() => navigate("/editAsignature/" + valor._id )}  >Editar</button>
+                                <button className="col-2 btn btn-danger " onClick={() => deleteAsignature(valor._id)}  >Eliminar</button>
+
                             </div>
+                            
                         </li>
                     )
                 }
-            </ul>
+            </ul> 
+                {flagEliminar && <p>No puedes eliminar una materia asigdada a un profesor</p>}
         </div>
     );
 }

@@ -37,7 +37,7 @@ const Navimage = (props) => {
             <h1> Colegio Nueva Virtualidad </h1>
             <h2 className="col-9 classh1" >{tittle}</h2>
             <nav className="row justify-content-around">
-                {flag2 && <Link className="col-2 " to="/firstlogin" >Firstlogin</Link>}
+                {flag2 && <Link className="col-2 " to="/PrimerLogueo" >Primer Logueo</Link>}
                 <Link className="col-2 " to="/" >Home</Link>
                 <Link className="col-2 " to="/login" onClick={() => logOut()}>Logout</Link>
                 {flag1 && <Link className="col-2 " to="/createUser" onClick={() => CreateNewUser()}>Nuevo Usuario</Link>}

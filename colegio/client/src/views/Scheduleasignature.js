@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Navimage from './Navimage';
 import axios from 'axios';
 const Scheduleasignature = () => {
+    const [materia, setMateria] = useState()
     const [schedule_, setSchedule_] = useState(
         {
             monday:["","","","",""],
@@ -16,8 +17,8 @@ const Scheduleasignature = () => {
     const  getData = async () =>{
         await axios.get("/api/asignature/" + id)
         .then(res=>{
-            
-            console.log(res.data.asignature)
+            setMateria(res.data.asignature.nameAsignature)
+            console.log(res.data.asignature.nameAsignature)
             setSchedule_(
                 {
                     monday:   [res.data.asignature.schedule.monday[0]?res.data.asignature.nameAsignature:""    ,res.data.asignature.schedule.monday[1]?res.data.asignature.nameAsignature:""   ,res.data.asignature.schedule.monday[2]?res.data.asignature.nameAsignature:""   ,res.data.asignature.schedule.monday[3]?res.data.asignature.nameAsignature:""      ,res.data.asignature.schedule.monday[4]?res.data.asignature.nameAsignature:""   ,res.data.asignature.schedule.monday[5]?res.data.asignature.nameAsignature:""   ],
@@ -39,7 +40,7 @@ const Scheduleasignature = () => {
     },[]);   
     return (
         <div>
-            <Navimage tittle= {"akjñlkd"}  flag1={false} flag2={true} /> 
+            <Navimage tittle= {materia}  flag1={false} flag2={false} /> 
             <div className="row">
                 <div className="col-2" >Hora</div>
                 <div className="col-2" >Lunes</div>

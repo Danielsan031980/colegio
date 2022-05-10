@@ -14,58 +14,55 @@ const Asignarasignature = (props) => {
         asignaturesIds:[""]
     }
     );
-    const {schedule} = props
+    const {schedule, asignaturelist, setAsignaturelist, onSubmitprop} = props
     const compare = async (values) => {
+        let newMateria = []
+        let newMateria2 = []
         const array = ["Elegir"]
         const arrayIds = [""]
-        const response = await axios.get("/api/asignature/", {withCredentials: true})
-            .then(res=>{
-                res.data.asignature.forEach((asignature, indexA)=>{
-                    let flag=true
-                    schedule.monday.forEach((value, indexB)=>{
-                        if( value !== "" &&  asignature.schedule.monday[indexB] === true ){
-                         flag=false
-                        }
-                     })
-                    schedule.tuesday.forEach((value, indexB)=>{
-                        if( value !== "" &&  asignature.schedule.tuesday[indexB] === true ){
-                            flag=false
-                        }
-                    })
-                    schedule.wednesday.forEach((value, indexB)=>{
-                        if( value !== "" &&  asignature.schedule.wednesday[indexB] === true ){
-                            flag=false
-                        }
-                    })
-                    schedule.thursday.forEach((value, indexB)=>{
-                        if( value !== "" &&  asignature.schedule.thursday[indexB] === true ){
-                            flag=false
-                        }
-                    })
-                    schedule.friday.forEach((value, indexB)=>{
-                        if( value !== "" &&  asignature.schedule.friday[indexB] === true ){
-                            flag=false
-                        }
-                    })
-                    
-                    if(flag){
-                        array.push(asignature.nameAsignature)
-                        arrayIds.push(asignature._id)
-                    }
-                })                           
-            })
-            .catch(err=>{
-                return { success: false, data: err.message };
-            })  
-            setAsignatureSelection(
-                {
-                    asignatures:array,
-                    asignaturesIds:arrayIds
+        asignaturelist.free.materia.forEach((asignature,indexA)=>{            
+            let flag=true
+            schedule.monday.forEach((value, indexB)=>{
+                if( value !== ""  &&  asignature.schedule.monday[indexB] === true ){         
+                    flag=false               
                 }
-            )
-            axios.get(`/api/user/${id}`, {withCredentials: true} )
+            })    
+            schedule.tuesday.forEach((value, indexB)=>{
+                if( value !== ""  &&  asignature.schedule.tuesday[indexB] === true ){             
+                    flag=false               
+                }
+            })    
+            schedule.wednesday.forEach((value, indexB)=>{
+                if( value !== ""  &&  asignature.schedule.wednesday[indexB] === true ){             
+                    flag=false               
+                }
+            })    
+            schedule.thursday.forEach((value, indexB)=>{
+                if( value !== ""  &&  asignature.schedule.thursday[indexB] === true ){            
+                    flag=false               
+                }
+            })    
+            schedule.friday.forEach((value, indexB)=>{
+                if( value !== ""  &&  asignature.schedule.friday[indexB] === true ){           
+                    flag=false               
+                }
+            })    
+            if(flag){
+                array.push(asignature.nameAsignature)
+                arrayIds.push(asignature._id)
+            }
+        }) 
+
+        setAsignatureSelection(
+            {
+                asignatures:array,
+                asignaturesIds:arrayIds
+            }
+        )
+        axios.get(`/api/user/${id}`, {withCredentials: true} )
             .then(res=>{
                 setUservalue(res.data)
+                
              })
              .catch(err=>{
                  return { success: false, data: err.message };
@@ -80,16 +77,18 @@ const Asignarasignature = (props) => {
          })
          .catch(err=>{
              return { success: false, data: err.message };
-        })        
-        compare(values)
+        }) 
+        
+        onSubmitprop()
+        
     }
     
     useEffect(() => { 
-        compare()
-    },[asignatureSelection]);
+        compare()  
+    },[ schedule ]);
     return (
         <div>
-            <RegisterAsigForUser onSubmitProp={asignAsignature}  asignatureSelection={asignatureSelection.asignatures} asignatureIds={asignatureSelection.asignaturesIds}  />  
+            <RegisterAsigForUser onSubmitProp={asignAsignature}  asignatureSelection={asignatureSelection?.asignatures} asignatureIds={asignatureSelection.asignaturesIds}  /> 
         </div>
     );
 }

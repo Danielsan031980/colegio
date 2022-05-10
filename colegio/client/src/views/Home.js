@@ -25,8 +25,7 @@ const Home = () => {
     return (
         
         <div>
-            <Navimage tittle= "Bienvenidos al Colegio Virtual"  flag1={flag}  />
-            {/* <Link className="col-3 " to="/registro" onClick={() => logOut()}>Logout</Link> */}
+            <Navimage tittle= "Bienvenidos al Colegio Virtual"  flag1={flag} flag2={false}  />
         </div>
     );
 }

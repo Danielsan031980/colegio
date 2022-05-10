@@ -4,7 +4,8 @@ import Navimage from './Navimage';
 import React, {useEffect, useState} from 'react';
 import Userlist from "./Userlist";
 
-const Main = () => {
+const Main = (props) => {
+    const {asignaturelist, setAsignaturelist, setUpdate, update} = props
     const { user } = useUser();
     const [flag, setFlag] = useState();
     const navigate = useNavigate();
@@ -23,11 +24,12 @@ const Main = () => {
         setFlag(false)
         navigate("/detail/" + user._id );
     }
+        
     },[]);
     return (
         <div>
           <Navimage tittle= "Bienvenidos al Colegio Virtual" flag1={flag} /> 
-          <Userlist/>
+          <Userlist asignaturelist={asignaturelist} setAsignaturelist={setAsignaturelist}/>
         </div>
     );
 }
