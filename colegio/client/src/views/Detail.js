@@ -164,7 +164,7 @@ const Detail = (props) => {
                             {
                                 teacherMaterias?.newAsignatures?.map((asignature, index)=>
                                     <li className="row  justify-content-center "  key={index}> 
-                                        <div className="col-6  " >
+                                        <div className="col-6  marco" >
                                                 <div className="row  justify-content-center" >
                                                     <div className="col-6 asignature">{asignature}</div>
                                                 {flag &&  <button className="col-6 btn btn-primary border-white asignature"  onClick={() => deleteAsignature(teacherMaterias.positionAsignature[index])} > Eliminar</button>}

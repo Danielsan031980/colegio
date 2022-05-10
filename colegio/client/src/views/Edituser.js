@@ -31,6 +31,19 @@ const Edituser = () => {
             return { success: false, data: err.message };
         })  
     }
+    const registerUser = (values) => {
+        axios.put('/api/user/update/' + id  , values,  {withCredentials: true})
+        .catch(err=>{
+            const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+            const errorArr = []; // Define a temp error array to push the messages in
+            for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                errorArr.push(errorResponse[key].message)
+            }
+            // Set Errors
+            setErrors(errorArr);
+        }) 
+        
+    }
     useEffect(() => {  
         if(!user){
             navigate("/login");
@@ -48,7 +61,7 @@ const Edituser = () => {
     return (
         <div>
             <Navimage tittle= "Editar Usuario" flag1={flag} /> 
-            <Registeruser  className="col-6 "  firstname={uservalue.firstname} lastname={uservalue.lastname} mail={uservalue.mail} image={uservalue.image}  address={uservalue.address} phoneNumber={uservalue.phoneNumber}></Registeruser > 
+            <Registeruser  className="col-6 " onSubmitProp={registerUser} firstname={uservalue.firstname} lastname={uservalue.lastname} mail={uservalue.mail} image={uservalue.image}  address={uservalue.address} phoneNumber={uservalue.phoneNumber}></Registeruser > 
         </div>
     );
 }
