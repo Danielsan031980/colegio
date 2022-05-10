@@ -15,6 +15,7 @@ const Detail = (props) => {
     const [teacherMaterias, setTeacherMaterias] = useState()
     const [flag, setFlag] = useState();
     const [flagAdmin, setFlagAdmin] = useState();
+    const [flagProf, setFlagProf] = useState(true);
     //data from function asignature.
 
     const asignatures = async  (uservalue) => {
@@ -128,6 +129,7 @@ const Detail = (props) => {
             setFlag(true)
             if(uservalue?.rolType === "administrador"){
                 setFlagAdmin(false)
+                setFlagProf(false)
             }
             else{
                 setFlagAdmin(true)
@@ -136,11 +138,11 @@ const Detail = (props) => {
         }
         else if(user.rolType === "profesor"){
             setFlag(false)
-            setFlagAdmin(false)
+            setFlagProf(true)
         }
        
         getData()
-    }, [uservalue, asignaturelist])
+    }, [uservalue, flagAdmin, asignaturelist])
 
     return (
 
@@ -177,7 +179,7 @@ const Detail = (props) => {
                     </div>
                         {flagAdmin && <Asignarasignature schedule={schedule} asignaturelist={asignaturelist} setAsignaturelist={setAsignaturelist} onSubmitprop={onSubmitprop} />}
                 </div>
-                        {flagAdmin && <button className="col-3 btn btn-primary border-white"  onClick={() => scheduleView()}  > Horario </button>}
+                        {flagProf && <button className="col-3 btn btn-primary border-white"  onClick={() => scheduleView()}  > Horario </button>}
         </div>
     );
 }

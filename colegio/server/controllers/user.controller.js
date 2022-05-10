@@ -29,18 +29,18 @@ module.exports.Register = async (req, res) => {
       )
       .catch(err => res.json({ message: "Something went wrong", error: err }));
       if (user === null) {
+        return
         res
           .status(400)
           .json({ errors: { error: { message: "El usuario no existe" } } });
-      }
-
-      
+          
+      }    
       const correctPassword = await bcrypt.compare(
         req.body.pass,
         user.pass
       );
-  
       if (!correctPassword) {
+        return
         res
           .status(400)
           .json({
@@ -49,7 +49,6 @@ module.exports.Register = async (req, res) => {
       }
   
       const userToken = jwt.sign({id: user._id},process.env.SECRET_KEY);
-  
       res
         .cookie("usertoken", userToken, process.env.SECRET_KEY, {
           httpOnly: true,
