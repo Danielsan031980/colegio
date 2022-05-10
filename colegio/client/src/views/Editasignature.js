@@ -6,7 +6,7 @@ import Navimage from "./Navimage";
 import Registerasignature from "../components/Registerasignature";
 
 const Editasignature = () => {
-
+    const [errors, setErrors] = useState([]);
     const { id } = useParams();
     const [asignature, setAsignature] = useState(
         {
@@ -21,7 +21,19 @@ const Editasignature = () => {
             }
         }
     )
-
+    const registerAsignature = (values) => {
+        axios.put('/api/asignature/update/' + id  , values)
+        .catch(err=>{
+            const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+            const errorArr = []; // Define a temp error array to push the messages in
+            for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                errorArr.push(errorResponse[key].message)
+            }
+            // Set Errors
+            setErrors(errorArr);
+        }) 
+        
+    }
     const  getData = async () =>{
         await axios.get("/api/asignature/" + id)
         .then(res=>{
@@ -39,9 +51,8 @@ const Editasignature = () => {
     return (
         <div>
             <Navimage tittle= "Crear Nueva Materia" /> 
-            
             {
-                asignature && <Registerasignature nameAsignature={asignature.nameAsignature} grade={asignature.grade}  valuesCheck={asignature.schedule}    />
+                asignature && <Registerasignature onSubmitProp={registerAsignature} nameAsignature={asignature.nameAsignature} grade={asignature.grade}  valuesCheck={asignature.schedule}    />
             }
 
 

@@ -4,11 +4,14 @@ import { useUser } from "../contexts/userContext";
 import React, {useEffect, useState} from 'react';
 
 const Schedule = (props) => {
+    const { id } = useParams();
     const  {schedule} = props
     const navigate = useNavigate();
     const { user, setUser } = useUser();
     const [flag, setFlag] = useState();
-
+    const retornar = () => {
+        navigate("/detail/" + id);
+    }
     useEffect(() => {    
         if(!user){
             navigate("/login");
@@ -23,7 +26,7 @@ const Schedule = (props) => {
     return (
         <div>
             <Navimage tittle= {schedule.userName}  flag1={flag} flag2={false}  /> 
-            <div className="row">
+            <div className="row table">
                 <div className="col-2" >Hora</div>
                 <div className="col-2" >Lunes</div>
                 <div className="col-2" >Martes</div>
@@ -79,6 +82,8 @@ const Schedule = (props) => {
                 <div className="col-2" >{schedule.thursday[5]}</div>
                 <div className="col-2" >{schedule.friday[5]}</div>
             </div>
+
+            <button className="col-6 "  onClick={() => retornar()} > Retornar</button>
         </div>
     );
 }

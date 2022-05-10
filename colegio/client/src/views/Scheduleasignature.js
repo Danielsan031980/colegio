@@ -41,7 +41,7 @@ const Scheduleasignature = () => {
     return (
         <div>
             <Navimage tittle= {materia}  flag1={false} flag2={false} /> 
-            <div className="row">
+            <div className="row table">
                 <div className="col-2" >Hora</div>
                 <div className="col-2" >Lunes</div>
                 <div className="col-2" >Martes</div>

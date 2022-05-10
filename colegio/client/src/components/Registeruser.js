@@ -35,23 +35,32 @@ const Registeruser = (props) => {
             }}
             validationSchema={ Yup.object().shape({
                     firstname: Yup.string()
-                    .min(3,"first name too short")
-                    .max(30,"first name too long")
-                    .required("Please write your name"),
+                    .min(3,"El nombre no debe ser de menos de 3 caracteres")
+                    .max(30,"El nombre no de ser de mas de 30 caracteres")
+                    .required("por favor escribe tu nombre"),
                     lastname: Yup.string()
-                    .min(3,"last name too short")
-                    .max(30,"last name too long")
-                    .required("Please write your name"),
+                    .min(3,"El apellido no debe ser de menos de 3 caracteres")
+                    .max(30,"El apellido no de ser de mas de 30 caracteres")
+                    .required("por favor escribe tu apellido"),
                     image: Yup.string()
-                    .required("Please write your url image"), 
+                    .required("Por favor incluye la url de tu imagen"), 
                     mail: Yup.string()
                     .email("Correo no valido")
                     .min(3, "Este correo electrónico es incorrecto")
                     .required("Por favor, ingresa un correo electrónico válido"),
                     address: Yup.string()
-                    .min(3,"address too short")
-                    .max(50,"address too long")
-                    .required("Please write your address")
+                    .min(3,"Dirección no debe tener menos de 3 caracteres")
+                    .max(50,"Dirección no debe tener mas de 50 caracteres")
+                    .required("Por favor escribe una dirección valida"),
+                    pass: Yup.string()
+                    .equals([Yup.ref('confirmPassword'), null], "las contraseñas no son iguales")
+                    .min(8, "La clave debe contener más de 8 caractes")
+                    .required("Por favor ingrese una contraseña"),
+        
+                    confirmPassword: Yup.string()
+                    .equals([Yup.ref('pass'), null], "las contraseñas no son iguales")
+                    .min(8, "La clave debe contener más de 8 caractes")
+                    .required("Por favor ingrese la confirmación de la contraseña"),
 
             })}
             onSubmit={(values,{ setSubmitting, resetForm })=>{

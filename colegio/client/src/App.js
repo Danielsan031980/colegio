@@ -86,7 +86,7 @@ const  getData = async () =>{
 
 
   return (
-    <div className="App container">
+    <div className="App container-sm">
       
       <UserProvider>
         <Router>

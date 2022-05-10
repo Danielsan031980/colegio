@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useParams } 
 import { useUser } from "../contexts/userContext";
 import axios from 'axios';
 import Navimage from './Navimage';
+import '../App.css';
 
 const Asignatureslist = (props) => {
     const navigate = useNavigate();
@@ -40,6 +41,9 @@ const Asignatureslist = (props) => {
                 setFlagEliminar(true)
             }
         })
+        setTimeout(()=>{ 
+            setFlagEliminar(false)
+        }, 5000)
         getData()
     
         
@@ -55,10 +59,12 @@ const Asignatureslist = (props) => {
         else if(user.rolType === "profesor"){
             setFlag(false)   
         }  
+
         onSubmitprop()
         getData()
+
         
-    },[asignatures]);
+    },[asignatures,flagEliminar]);
     return (
         <div>
             <Navimage tittle= {"Lista de Asignaturas"}  flag1={flag}  /> 
@@ -76,9 +82,9 @@ const Asignatureslist = (props) => {
                             <div className="row">
                                 <span className="col-3" >{valor.nameAsignature}  </span>
                                 <span className="col-3" >{valor.grade}  </span>
-                                <button className="col-2 btn btn-primary"  onClick={() => navigate("/asignature/schedule/" + valor._id) } >Ver Horario</button>
-                                <button className="col-2 btn btn-secondary" onClick={() => navigate("/editAsignature/" + valor._id )}  >Editar</button>
-                                <button className="col-2 btn btn-danger " onClick={() => deleteAsignature(valor._id)}  >Eliminar</button>
+                                <button className="col-2 btn btn-primary border-white"  onClick={() => navigate("/asignature/schedule/" + valor._id) } >Ver Horario</button>
+                                <button className="col-2 btn btn-secondary border-white" onClick={() => navigate("/editAsignature/" + valor._id )}  >Editar</button>
+                                <button className="col-2 btn btn-danger border-white" onClick={() => deleteAsignature(valor._id)}  >Eliminar</button>
 
                             </div>
                             
@@ -86,7 +92,7 @@ const Asignatureslist = (props) => {
                     )
                 }
             </ul> 
-                {flagEliminar && <p>No puedes eliminar una materia asigdada a un profesor</p>}
+                {flagEliminar && <p className="error">No puedes eliminar una materia asigdada a un profesor</p>}
         </div>
     );
 }

@@ -78,9 +78,9 @@ const Userlist = (props) => {
                                     <span >{valor.lastname}  </span>
                                 </div>
                                 <span className="col-sm-2">{valor.rolType}  </span>
-                                <button className="col-sm-2 btn btn-danger"  onClick={() => deleteUser(valor._id)}  >Eliminar</button>
-                                <button className="col-sm-2 btn btn-primary "  onClick={() => navigate("/detail/" + valor._id) } >Ver Detalle</button>
-                                <button  className="col-sm-2 btn btn-secondary" onClick={() => navigate("/editUser/" + valor._id )}  >Editar</button>
+                                <button className="col-sm-2 btn btn-danger border-white"  onClick={() => deleteUser(valor._id)}  >Eliminar</button>
+                                <button className="col-sm-2 btn btn-primary border-white"  onClick={() => navigate("/detail/" + valor._id) } >Ver Detalle</button>
+                                <button  className="col-sm-2 btn btn-secondary border-white" onClick={() => navigate("/editUser/" + valor._id )}  >Editar</button>
                             </div>    
                         </li>
                     )

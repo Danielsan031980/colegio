@@ -59,7 +59,7 @@ const RegisterAsigForUser = (props) => {
                                                 )
                                             }
                                         </Field>
-                                        <button type="submit" className="button_color border-white"  > Agregar Materia </button> 
+                                        <button type="submit" className="btn btn-primary border-white"  > Agregar Materia </button> 
                                     </div>                                   
                                     <br></br>
                                 </Form>  

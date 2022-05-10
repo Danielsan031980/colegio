@@ -166,8 +166,8 @@ const Detail = (props) => {
                                     <li className="row  justify-content-center "  key={index}> 
                                         <div className="col-6  " >
                                                 <div className="row  justify-content-center" >
-                                                    <div className="col-6">{asignature}</div>
-                                                {flag &&  <button className="col-6 "  onClick={() => deleteAsignature(teacherMaterias.positionAsignature[index])} > Eliminar</button>}
+                                                    <div className="col-6 asignature">{asignature}</div>
+                                                {flag &&  <button className="col-6 btn btn-primary border-white asignature"  onClick={() => deleteAsignature(teacherMaterias.positionAsignature[index])} > Eliminar</button>}
                                                 </div>
                                         </div>
                                     </li>    
@@ -177,7 +177,7 @@ const Detail = (props) => {
                     </div>
                         {flagAdmin && <Asignarasignature schedule={schedule} asignaturelist={asignaturelist} setAsignaturelist={setAsignaturelist} onSubmitprop={onSubmitprop} />}
                 </div>
-                        {flagAdmin && <button className="col-3 "  onClick={() => scheduleView()}  > Horario </button>}
+                        {flagAdmin && <button className="col-3 btn btn-primary border-white"  onClick={() => scheduleView()}  > Horario </button>}
         </div>
     );
 }

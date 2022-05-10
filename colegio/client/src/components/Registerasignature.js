@@ -49,13 +49,13 @@ const Registerasignature = (props) => {
             }}
             validationSchema={ Yup.object().shape({
                     nameAsignature: Yup.string()
-                    .min(3,"Asignature name too short")
-                    .max(30,"Asignature name too long")
-                    .required("Please write your name"),
+                    .min(3,"Nombre de materia debe tener mas de 3 caracteres")
+                    .max(30,"Nombre de materia debe tener menos de 30 caracteres")
+                    .required("Por favor digita el nombre de asignatura"),
                     grade: Yup.string()
-                    .min(1,"Grade name too short")
-                    .max(15,"Grade name too long")
-                    .required("Please write your grade name"),
+                    .min(2,"Grado no debe tener menos de 2 caracteres")
+                    .max(15,"Grado no debe tener más de 15 caracteres")
+                    .required("Por favor escribe el grado"),
                 //    Schedule: Yup.string()
                 //    .required("Please write your url Schedule"), 
                 //    mail: Yup.string()
