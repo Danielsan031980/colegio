@@ -6,6 +6,7 @@ import React, {useState, useEffect} from 'react';
 import Navimage from "./Navimage";
 
 const Edituser = () => {
+    const [errors, setErrors] = useState([]);
     const { id } = useParams();
     const navigate = useNavigate();
     const { user, setUser } = useUser();
